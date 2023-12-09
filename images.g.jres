@@ -1,0 +1,47 @@
+{
+    "image1": {
+        "data": "hwQQABAAAAAAAAAAAAIAAAAAAAAgJQAAAAAAAFJVAgAAAAAA3d0NAAAAICL//y8iAAAAIhERIQIAAAAgEREhAAAAAAAREQEAAAAAABERAQAAAAAAkRkBAAAAAACRGQEAAAAAABERAQAAAAAA//8PAAAAAAAiIgIAAAAAACAiAAAAAAAAAAIAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "rocket"
+    },
+    "image3": {
+        "data": "hwQQABAAAAAAAAAAIiIlAAAAAAAAIvIPAAAAACAi3/0AAAAAkinf/QAAACCZKfIPAAAAIJkpIgAAAAAgIiIiAAAAACCZKSIAAAAAIJkpIgAAAAAgmSkiAAAAAACSKfIPAAAAACAi3/0AAAAAACLf/QAAAAAAIvIPAAAAAAAiIgAAAAAAAFAiAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "car"
+    },
+    "image2": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAA/wAAAAAAAP9X/w8AAADwd1/19gAAAPB39//2AAAA8P9//w8AAAAAAH8PAAAADwAAfw8AAAAPAPB3DwAA8Pf/f/f/AADw9Xd3X/UPAPAP//f19fYAAAAA//X19gAAAADwVf8PAAAAAAD/DwAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "scooter"
+    },
+    "image7": {
+        "data": "hwQeAA8AAAAAABWZmZkJAAAAFZkREQkAAAAVmZn/DwAAABWZ+f//AAAAABD/Hf0PAAAAEP8h8Q8AAAAQ/x39DwAAABn5//8AAACQGZn/nwAAAJkZmRWZAACQmRmZFZkAAJmZGZkVmQAAGRkZmRWZAAAZERmZFZkAAJkZmZEVmQAAACIikRWZAAAA8i+RFZkAAADyL5H1/wAAAPIvkfX/AAAAAJCRlZkAAAAAkJH/nwAAAAAA8f//AAAAAAD/Hf0PAAAAAP8h8Q8AAAAA/x39DwAAAADw//8AAAAAAAD/nwAAAAAAAJCVAAAAAAAAkJUAAAAAAAAAlQA=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "formula1"
+    },
+    "image4": {
+        "data": "hwQZAAoAAADw/wAAAAAAAPCI/w8AAAAAAI+I+AAAAAAA8I/4DwAAAAAA8IgPAAAAAADwiA8AAAAAAPCIDwAAAAAA8IgPAAAAAAD/iA8AAAAAAI+IDwAAAAAAn4gPAAAAAPCYiA8AAAAA8JmIDwAAAADwmYgPAAAAAPCYiA8AAAAA/4+IDwAAAACf+Y8PAAAAAJ+Zjw8AAAAA8JmPDwAAAAAA/48PAAAAAACPiA8AAAAAAI/4AAAAAAAAjw8AAAAAQET0REQAAAAAAPAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "plane"
+    },
+    "image6": {
+        "data": "hwQQABAAAAAAAGBmYAAAAAAAYPZmAAAAAAAAYA8AAAAAAABgDwAAAAAAAGAPAAAAAAAAYP8GAAAAAABgZv8ACwAMAGb29gawAAxgZvb2BrAADJaZ9v+2uwAPlpn2/wawAP/2//b/BrAAD2Zm9v+2uwAMmZn29gawAAyQmfb2ALAADACZ9g8ACw==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "helicopter"
+    },
+    "image5": {
+        "data": "hwQQABAAAAAAAAAAAPD/AAAAAAAAv7sPAAAAAPC7u/sAAAAA8Cu/+wAA8ADwsrL7AADwIiK/sg8AAPAgAvDyAAAAAAAgIgIAAABgAAIAAgAAAGAiAPDyAAAAYAUiv7IPAABgAPAisvsAAAAA8Cu/+wAAAADwu7v7AAAAAAC/uw8AAAAAAPD/AA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "bicycle"
+    },
+    "image8": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAcPD/AAAAAABw8P0AAAAAAHDw/wAAAAAAAHcHAAAAAAAAUAcAAAAAAABwBQAAAAAAAFAHAAAAAAAAcAUAAAAAAABQBwAAAAAAAHcHAABwAABwcAcAAHAAAAfw/wAAcHd3d/f9AABwBQAA8P8AAHAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "patin"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myImages"
+    }
+}
