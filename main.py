@@ -12,8 +12,12 @@ scene.on_overlap_tile(SpriteKind.player,
 
 def on_a_pressed():
     if choose != 0:
-        if player1.vy == 0:
-            player1.vy = -175
+        if skin_number != 2:
+            if player1.vy == 0:
+                player1.vy = -190
+        if skin_number == 2:
+            if player1.vy == 0:
+                player1.vy = -225
 controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
 
 def on_overlap_tile2(sprite4, location3):
@@ -26,7 +30,12 @@ scene.on_overlap_tile(SpriteKind.player,
 
 def startPlaying():
     global gravity, player1
+    music.stop_all_sounds()
     if level == 0:
+        music.play(music.create_song(assets.song("""
+                lvl_0_theme
+            """)),
+            music.PlaybackMode.LOOPING_IN_BACKGROUND)
         scene.set_background_image(img("""
             ................................................................................................................................................................
                         ................................................................................................................................................................
@@ -158,17 +167,19 @@ def startPlaying():
             player1 = sprites.create(assets.image("""
                 scooter
             """), SpriteKind.player)
+            controller.move_sprite(player1, 100, 0)
         if skin_number == 1:
             player1 = sprites.create(assets.image("""
                 rocket
             """), SpriteKind.player)
+            controller.move_sprite(player1, 150, 0)
         if skin_number == 2:
             player1 = sprites.create(assets.image("""
                 helicopter
             """), SpriteKind.player)
+            controller.move_sprite(player1, 90, 0)
         player1.ay = gravity
         scene.camera_follow_sprite(player1)
-        controller.move_sprite(player1, 100, 0)
 def change_skin():
     global skin_number, show_skin
     pause(500)
@@ -214,6 +225,11 @@ scene.on_overlap_tile(SpriteKind.player,
 def show_menu():
     global play_button, skin, cursor
     if choose == 0:
+        music.set_volume(15)
+        music.play(music.create_song(assets.song("""
+                menu_music
+            """)),
+            music.PlaybackMode.LOOPING_IN_BACKGROUND)
         scene.set_background_image(assets.image("""
             menu_background
         """))

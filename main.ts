@@ -6,8 +6,15 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`whitetile`, function (sprite,
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (choose != 0) {
-        if (player1.vy == 0) {
-            player1.vy = -175
+        if (skin_number != 2) {
+            if (player1.vy == 0) {
+                player1.vy = -190
+            }
+        }
+        if (skin_number == 2) {
+            if (player1.vy == 0) {
+                player1.vy = -225
+            }
         }
     }
 })
@@ -15,7 +22,9 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`blacktile`, function (sprite4
     game.gameOver(true)
 })
 function startPlaying () {
+    music.stopAllSounds()
     if (level == 0) {
+        music.play(music.createSong(assets.song`lvl_0_theme`), music.PlaybackMode.LoopingInBackground)
         scene.setBackgroundImage(img`
             ................................................................................................................................................................
             ................................................................................................................................................................
@@ -143,16 +152,18 @@ function startPlaying () {
         tiles.setCurrentTilemap(tilemap`level-1`)
         if (skin_number == 0) {
             player1 = sprites.create(assets.image`scooter`, SpriteKind.Player)
+            controller.moveSprite(player1, 100, 0)
         }
         if (skin_number == 1) {
             player1 = sprites.create(assets.image`rocket`, SpriteKind.Player)
+            controller.moveSprite(player1, 150, 0)
         }
         if (skin_number == 2) {
             player1 = sprites.create(assets.image`helicopter`, SpriteKind.Player)
+            controller.moveSprite(player1, 90, 0)
         }
         player1.ay = gravity
         scene.cameraFollowSprite(player1)
-        controller.moveSprite(player1, 100, 0)
     }
 }
 function change_skin () {
@@ -191,6 +202,8 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`mine-1`, function (sprite2, l
 })
 function show_menu () {
     if (choose == 0) {
+        music.setVolume(15)
+        music.play(music.createSong(assets.song`menu_music`), music.PlaybackMode.LoopingInBackground)
         scene.setBackgroundImage(assets.image`menu_background`)
         play_button = sprites.create(assets.image`play_button`, SpriteKind.Button)
         skin = sprites.create(assets.image`skin_button`, SpriteKind.Button)
