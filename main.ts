@@ -11,6 +11,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`blacktile`, function (sprite4, location3) {
+    game.gameOver(true)
+})
 function startPlaying () {
     if (level == 0) {
         scene.setBackgroundImage(img`
@@ -138,40 +141,74 @@ function startPlaying () {
         scene.setBackgroundColor(9)
         gravity = 500
         tiles.setCurrentTilemap(tilemap`level-1`)
-        player1 = sprites.create(assets.image`plane`, SpriteKind.Player)
+        if (skin_number == 0) {
+            player1 = sprites.create(assets.image`scooter`, SpriteKind.Player)
+        }
+        if (skin_number == 1) {
+            player1 = sprites.create(assets.image`rocket`, SpriteKind.Player)
+        }
+        if (skin_number == 2) {
+            player1 = sprites.create(assets.image`helicopter`, SpriteKind.Player)
+        }
         player1.ay = gravity
         scene.cameraFollowSprite(player1)
         controller.moveSprite(player1, 100, 0)
     }
 }
-scene.onOverlapTile(SpriteKind.Player, assets.tile`mine-1`, function (sprite, location) {
-    game.gameOver(false)
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Button, function (sprite, otherSprite) {
+function change_skin () {
+    pause(500)
+    skin_number += 1
+    if (skin_number >= 3) {
+        skin_number = 0
+    }
+    if (skin_number == 0) {
+        show_skin = sprites.create(assets.image`scooter`, SpriteKind.Button)
+    }
+    if (skin_number == 1) {
+        show_skin = sprites.create(assets.image`rocket`, SpriteKind.Button)
+    }
+    if (skin_number == 2) {
+        show_skin = sprites.create(assets.image`helicopter`, SpriteKind.Button)
+    }
+    show_skin.setPosition(105, 88)
+}
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Button, function (sprite3, otherSprite) {
     if (otherSprite == play_button && controller.A.isPressed()) {
         choose = 1
         sprites.destroy(cursor)
         sprites.destroy(play_button)
+        sprites.destroy(skin)
+        sprites.destroy(show_skin)
         startPlaying()
     }
+    if (otherSprite == skin && controller.A.isPressed()) {
+        sprites.destroy(show_skin)
+        change_skin()
+    }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`mine-1`, function (sprite2, location2) {
+    game.gameOver(false)
 })
 function show_menu () {
     if (choose == 0) {
         scene.setBackgroundImage(assets.image`menu_background`)
         play_button = sprites.create(assets.image`play_button`, SpriteKind.Button)
+        skin = sprites.create(assets.image`skin_button`, SpriteKind.Button)
         cursor = sprites.create(assets.image`cursor_icon`, SpriteKind.Player)
+        skin.setPosition(80, 90)
         controller.moveSprite(cursor)
     }
 }
-scene.onOverlapTile(SpriteKind.Player, assets.tile`blacktile`, function (sprite, location) {
-    game.gameOver(true)
-})
+let skin: Sprite = null
 let cursor: Sprite = null
 let play_button: Sprite = null
+let show_skin: Sprite = null
 let gravity = 0
 let player1: Sprite = null
 let level = 0
 let choose = 0
+let skin_number = 0
+skin_number = 0
 choose = 0
 level = 0
 show_menu()
