@@ -252,7 +252,7 @@ def show_intro():
             intro_theme
         """)),
         music.PlaybackMode.UNTIL_DONE)
-    pause(1000)
+    pause(2000)
 def show_menu():
     global play_button, skin, cursor
     if choose == 0:

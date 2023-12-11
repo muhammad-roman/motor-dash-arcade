@@ -224,7 +224,7 @@ function show_intro () {
     scene.setBackgroundImage(assets.image`intro_image`)
     pause(1000)
     music.play(music.createSong(assets.song`intro_theme`), music.PlaybackMode.UntilDone)
-    pause(1000)
+    pause(2000)
 }
 function show_menu () {
     if (choose == 0) {
