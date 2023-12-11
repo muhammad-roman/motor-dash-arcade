@@ -3,7 +3,9 @@ class SpriteKind:
     Button = SpriteKind.create()
 
 def on_overlap_tile(sprite, location):
-    game.game_over(True)
+    global level
+    level += 1
+    startPlaying()
 scene.on_overlap_tile(SpriteKind.player,
     assets.tile("""
         whitetile
@@ -21,7 +23,9 @@ def on_a_pressed():
 controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
 
 def on_overlap_tile2(sprite4, location3):
-    game.game_over(True)
+    global level
+    level += 1
+    startPlaying()
 scene.on_overlap_tile(SpriteKind.player,
     assets.tile("""
         blacktile
@@ -190,6 +194,12 @@ def startPlaying():
         player1.set_position(88, 110)
         scene.camera_follow_sprite(player1)
         spawn = True
+    if level == 1:
+        scene.set_background_color(15)
+        tiles.set_current_tilemap(tilemap("""
+            level2
+        """))
+        player1.set_position(88, 110)
 
 def on_right_pressed():
     global facing_right

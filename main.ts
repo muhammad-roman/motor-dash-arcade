@@ -2,7 +2,8 @@ namespace SpriteKind {
     export const Button = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`whitetile`, function (sprite, location) {
-    game.gameOver(true)
+    level += 1
+    startPlaying()
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (choose != 0) {
@@ -19,7 +20,8 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`blacktile`, function (sprite4, location3) {
-    game.gameOver(true)
+    level += 1
+    startPlaying()
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     if (spawn) {
@@ -174,6 +176,11 @@ function startPlaying () {
         player1.setPosition(88, 110)
         scene.cameraFollowSprite(player1)
         spawn = true
+    }
+    if (level == 1) {
+        scene.setBackgroundColor(15)
+        tiles.setCurrentTilemap(tilemap`level2`)
+        player1.setPosition(88, 110)
     }
 }
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
