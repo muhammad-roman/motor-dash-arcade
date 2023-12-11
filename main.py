@@ -187,6 +187,7 @@ def startPlaying():
             """), SpriteKind.player)
             controller.move_sprite(player1, 90, 0)
         player1.ay = gravity
+        player1.set_position(88, 110)
         scene.camera_follow_sprite(player1)
         spawn = True
 
@@ -221,11 +222,12 @@ def change_skin():
 def on_on_overlap(sprite3, otherSprite):
     global choose
     if otherSprite == play_button and controller.A.is_pressed():
-        choose = 1
         sprites.destroy(cursor)
         sprites.destroy(play_button)
         sprites.destroy(skin)
         sprites.destroy(show_skin)
+        show_intro()
+        choose = 1
         startPlaying()
     if otherSprite == skin and controller.A.is_pressed():
         sprites.destroy(show_skin)
@@ -240,6 +242,17 @@ scene.on_overlap_tile(SpriteKind.player,
     """),
     on_overlap_tile3)
 
+def show_intro():
+    music.stop_all_sounds()
+    scene.set_background_image(assets.image("""
+        intro_image
+    """))
+    pause(1000)
+    music.play(music.create_song(assets.song("""
+            intro_theme
+        """)),
+        music.PlaybackMode.UNTIL_DONE)
+    pause(1000)
 def show_menu():
     global play_button, skin, cursor
     if choose == 0:

@@ -171,6 +171,7 @@ function startPlaying () {
             controller.moveSprite(player1, 90, 0)
         }
         player1.ay = gravity
+        player1.setPosition(88, 110)
         scene.cameraFollowSprite(player1)
         spawn = true
     }
@@ -202,11 +203,12 @@ function change_skin () {
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Button, function (sprite3, otherSprite) {
     if (otherSprite == play_button && controller.A.isPressed()) {
-        choose = 1
         sprites.destroy(cursor)
         sprites.destroy(play_button)
         sprites.destroy(skin)
         sprites.destroy(show_skin)
+        show_intro()
+        choose = 1
         startPlaying()
     }
     if (otherSprite == skin && controller.A.isPressed()) {
@@ -217,6 +219,13 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Button, function (sprite3, other
 scene.onOverlapTile(SpriteKind.Player, assets.tile`mine-1`, function (sprite2, location2) {
     game.gameOver(false)
 })
+function show_intro () {
+    music.stopAllSounds()
+    scene.setBackgroundImage(assets.image`intro_image`)
+    pause(1000)
+    music.play(music.createSong(assets.song`intro_theme`), music.PlaybackMode.UntilDone)
+    pause(1000)
+}
 function show_menu () {
     if (choose == 0) {
         music.setVolume(15)
