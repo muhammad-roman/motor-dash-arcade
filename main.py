@@ -28,8 +28,16 @@ scene.on_overlap_tile(SpriteKind.player,
     """),
     on_overlap_tile2)
 
+def on_left_pressed():
+    global facing_right
+    if spawn:
+        if facing_right:
+            player1.image.flip_x()
+            facing_right = False
+controller.left.on_event(ControllerButtonEvent.PRESSED, on_left_pressed)
+
 def startPlaying():
-    global gravity, player1
+    global gravity, player1, spawn
     music.stop_all_sounds()
     if level == 0:
         music.play(music.create_song(assets.song("""
@@ -180,6 +188,16 @@ def startPlaying():
             controller.move_sprite(player1, 90, 0)
         player1.ay = gravity
         scene.camera_follow_sprite(player1)
+        spawn = True
+
+def on_right_pressed():
+    global facing_right
+    if spawn:
+        if not (facing_right):
+            player1.image.flip_x()
+            facing_right = True
+controller.right.on_event(ControllerButtonEvent.PRESSED, on_right_pressed)
+
 def change_skin():
     global skin_number, show_skin
     pause(500)
@@ -249,11 +267,14 @@ cursor: Sprite = None
 play_button: Sprite = None
 show_skin: Sprite = None
 gravity = 0
+spawn = False
 player1: Sprite = None
+facing_right = False
 level = 0
 choose = 0
 skin_number = 0
 skin_number = 0
 choose = 0
 level = 0
+facing_right = True
 show_menu()

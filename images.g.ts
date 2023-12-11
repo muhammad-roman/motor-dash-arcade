@@ -328,6 +328,25 @@ ffffffffffffffffffffffffffffffff
 . . . . . . b . . b . . b . . b 
 . . . . . . . b b b b b b b b . 
 `;
+            case "image10":
+            case "scooter_reversed":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . f f f . . . . . . . . . 
+. . . . f 5 7 f f . . . . . . . 
+. . . . . f f . . . . . . . . . 
+. . . . f 7 f . . . . . . . . . 
+. . . . f 7 f . . . f f f . . . 
+. . . f 7 7 f . . . f 7 7 f . . 
+. . f f f 7 7 f . . f 7 7 f . . 
+. f 5 5 5 f 7 7 f f f 7 f 7 f . 
+. f 5 f f 5 f 7 7 7 7 f 5 5 f . 
+. f f 5 5 5 f f f f f f 5 f . . 
+. . f f f f f . . . f f f f . . 
+. . f 6 6 f . . . . f 6 6 f . . 
+. . . f f . . . . . . f f . . . 
+`;
         }
         return null;
     })
