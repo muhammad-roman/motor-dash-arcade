@@ -1,8 +1,8 @@
 @namespace
 class SpriteKind:
     Button = SpriteKind.create()
+# Detecta si el jugador llega a la meta y pasa al siguiente nivel, si se llega al nivel final ganas la partida
 
-#Detecta si el jugador llega a la meta y pasa al siguiente nivel, si se llega al nivel final ganas la partida
 def on_overlap_tile(sprite, location):
     global level
     level += 1
@@ -15,7 +15,8 @@ scene.on_overlap_tile(SpriteKind.player,
     """),
     on_overlap_tile)
 
-#Detecta si el jugador pulsa un boton y ejecuta la accion del boton
+# Detecta si el jugador pulsa un boton y ejecuta la accion del boton
+
 def on_on_overlap(sprite32, otherSprite):
     global choose
     if otherSprite == play_button and controller.A.is_pressed():
@@ -31,7 +32,8 @@ def on_on_overlap(sprite32, otherSprite):
         change_skin()
 sprites.on_overlap(SpriteKind.player, SpriteKind.Button, on_on_overlap)
 
-#Hace que el jugador salte al pulsar el boton "A"
+# Hace que el jugador salte al pulsar el boton "A"
+
 def on_a_pressed():
     if choose != 0:
         if skin_number != 2:
@@ -42,7 +44,8 @@ def on_a_pressed():
                 player1.vy = -225
 controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
 
-#Gira el personaje a la izquierda al moverse
+# Gira el personaje a la izquierda al moverse
+
 def on_left_pressed():
     global facing_right
     if spawn:
@@ -51,7 +54,7 @@ def on_left_pressed():
             facing_right = False
 controller.left.on_event(ControllerButtonEvent.PRESSED, on_left_pressed)
 
-#Teletransporta al jugador a la posicion inicial y a los distintos niveles
+# Teletransporta al jugador a la posicion inicial y a los distintos niveles
 def startPlaying():
     global gravity, player1, spawn
     music.stop_all_sounds()
@@ -238,8 +241,8 @@ def startPlaying():
         player1.set_position(88, 110)
     if level == 4:
         pass
+# Gira el personaje a la derecha al moverse
 
-#Gira el personaje a la derecha al moverse
 def on_right_pressed():
     global facing_right
     if spawn:
@@ -248,7 +251,7 @@ def on_right_pressed():
             facing_right = True
 controller.right.on_event(ControllerButtonEvent.PRESSED, on_right_pressed)
 
-#Cambia el personaje del usuario en el menú
+# Cambia el personaje del usuario en el menú
 def change_skin():
     global skin_number, show_skin
     pause(500)
@@ -279,8 +282,7 @@ def show_intro():
         """)),
         music.PlaybackMode.UNTIL_DONE)
     pause(2000)
-
-#Muestra el menú y los distintos botones, además de el aspecto del jugador
+# Muestra el menú y los distintos botones, además de el aspecto del jugador
 def show_menu():
     global play_button, skin, cursor
     if choose == 0:
@@ -314,8 +316,6 @@ facing_right = False
 level = 0
 choose = 0
 skin_number = 0
-
-#Detecta que el jugador toca un sprite concreto y acaba la partida.
 def on_overlap_tile2(sprite2: Sprite, location2: tiles.Location):
     game.game_over(False)
 scene.on_overlap_tile(SpriteKind.player,
