@@ -241,17 +241,7 @@ def startPlaying():
         player1.set_position(88, 110)
     if level == 4:
         music.play(music.create_song(assets.song("""
-                pacman_theme
-            """)),
-            music.PlaybackMode.LOOPING_IN_BACKGROUND)
-        scene.set_background_color(15)
-        tiles.set_current_tilemap(tilemap("""
-            level04
-        """))
-        player1.set_position(88, 110)
-    if level == 5:
-        music.play(music.create_song(assets.song("""
-                pacman_theme
+                final_theme1
             """)),
             music.PlaybackMode.LOOPING_IN_BACKGROUND)
         scene.set_background_color(15)

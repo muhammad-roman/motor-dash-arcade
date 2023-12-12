@@ -262,18 +262,7 @@ function startPlaying() {
     
     if (level == 4) {
         music.play(music.createSong(assets.song`
-                pacman_theme
-            `), music.PlaybackMode.LoopingInBackground)
-        scene.setBackgroundColor(15)
-        tiles.setCurrentTilemap(tilemap`
-            level04
-        `)
-        player1.setPosition(88, 110)
-    }
-    
-    if (level == 5) {
-        music.play(music.createSong(assets.song`
-                pacman_theme
+                final_theme1
             `), music.PlaybackMode.LoopingInBackground)
         scene.setBackgroundColor(15)
         tiles.setCurrentTilemap(tilemap`
