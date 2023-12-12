@@ -188,7 +188,7 @@ def startPlaying():
         scene.set_background_color(9)
         gravity = 500
         tiles.set_current_tilemap(tilemap("""
-            level-1
+            tutorial
         """))
         if skin_number == 0:
             player1 = sprites.create(assets.image("""
@@ -216,7 +216,7 @@ def startPlaying():
             music.PlaybackMode.LOOPING_IN_BACKGROUND)
         scene.set_background_color(15)
         tiles.set_current_tilemap(tilemap("""
-            level2
+            level01
         """))
         player1.set_position(88, 110)
     if level == 2:
@@ -226,7 +226,7 @@ def startPlaying():
             music.PlaybackMode.LOOPING_IN_BACKGROUND)
         scene.set_background_color(9)
         tiles.set_current_tilemap(tilemap("""
-            level3
+            level02
         """))
         player1.set_position(88, 110)
     if level == 3:
@@ -236,11 +236,29 @@ def startPlaying():
             music.PlaybackMode.LOOPING_IN_BACKGROUND)
         scene.set_background_color(15)
         tiles.set_current_tilemap(tilemap("""
-            level4
+            level03
         """))
         player1.set_position(88, 110)
     if level == 4:
-        pass
+        music.play(music.create_song(assets.song("""
+                pacman_theme
+            """)),
+            music.PlaybackMode.LOOPING_IN_BACKGROUND)
+        scene.set_background_color(15)
+        tiles.set_current_tilemap(tilemap("""
+            level04
+        """))
+        player1.set_position(88, 110)
+    if level == 5:
+        music.play(music.create_song(assets.song("""
+                pacman_theme
+            """)),
+            music.PlaybackMode.LOOPING_IN_BACKGROUND)
+        scene.set_background_color(15)
+        tiles.set_current_tilemap(tilemap("""
+            level05
+        """))
+        player1.set_position(88, 110)
 # Gira el personaje a la derecha al moverse
 
 def on_right_pressed():
