@@ -195,11 +195,37 @@ def startPlaying():
         scene.camera_follow_sprite(player1)
         spawn = True
     if level == 1:
+        music.play(music.create_song(assets.song("""
+                mario_theme
+            """)),
+            music.PlaybackMode.LOOPING_IN_BACKGROUND)
         scene.set_background_color(15)
         tiles.set_current_tilemap(tilemap("""
             level2
         """))
         player1.set_position(88, 110)
+    if level == 2:
+        music.play(music.create_song(assets.song("""
+                sonic_theme
+            """)),
+            music.PlaybackMode.LOOPING_IN_BACKGROUND)
+        scene.set_background_color(9)
+        tiles.set_current_tilemap(tilemap("""
+            level3
+        """))
+        player1.set_position(88, 110)
+    if level == 3:
+        music.play(music.create_song(assets.song("""
+                pacman_theme
+            """)),
+            music.PlaybackMode.LOOPING_IN_BACKGROUND)
+        scene.set_background_color(15)
+        tiles.set_current_tilemap(tilemap("""
+            level4
+        """))
+        player1.set_position(88, 110)
+    if level == 4:
+        pass
 
 def on_right_pressed():
     global facing_right

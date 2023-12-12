@@ -178,9 +178,25 @@ function startPlaying () {
         spawn = true
     }
     if (level == 1) {
+        music.play(music.createSong(assets.song`mario_theme`), music.PlaybackMode.LoopingInBackground)
         scene.setBackgroundColor(15)
         tiles.setCurrentTilemap(tilemap`level2`)
         player1.setPosition(88, 110)
+    }
+    if (level == 2) {
+        music.play(music.createSong(assets.song`sonic_theme`), music.PlaybackMode.LoopingInBackground)
+        scene.setBackgroundColor(9)
+        tiles.setCurrentTilemap(tilemap`level3`)
+        player1.setPosition(88, 110)
+    }
+    if (level == 3) {
+        music.play(music.createSong(assets.song`pacman_theme`), music.PlaybackMode.LoopingInBackground)
+        scene.setBackgroundColor(15)
+        tiles.setCurrentTilemap(tilemap`level4`)
+        player1.setPosition(88, 110)
+    }
+    if (level == 4) {
+    	
     }
 }
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
