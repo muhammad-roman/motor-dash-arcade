@@ -2,6 +2,7 @@ namespace SpriteKind {
     export const Button = SpriteKind.create()
 }
 
+// Detecta si el jugador llega a la meta y pasa al siguiente nivel, si se llega al nivel final ganas la partida
 scene.onOverlapTile(SpriteKind.Player, assets.tile`
         whitetile
     `, function on_overlap_tile(sprite: Sprite, location: tiles.Location) {
@@ -13,16 +14,26 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`
     
     startPlaying()
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`
-        mine-3
-    `, function on_overlap_tile2(sprite2: Sprite, location2: tiles.Location) {
-    game.gameOver(false)
+// Detecta si el jugador pulsa un boton y ejecuta la accion del boton
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Button, function on_on_overlap(sprite32: Sprite, otherSprite: Sprite) {
+    
+    if (otherSprite == play_button && controller.A.isPressed()) {
+        sprites.destroy(cursor)
+        sprites.destroy(play_button)
+        sprites.destroy(skin)
+        sprites.destroy(show_skin)
+        show_intro()
+        choose = 1
+        startPlaying()
+    }
+    
+    if (otherSprite == skin && controller.A.isPressed()) {
+        sprites.destroy(show_skin)
+        change_skin()
+    }
+    
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`
-        sonicenemy3
-    `, function on_overlap_tile3(sprite3: Sprite, location3: tiles.Location) {
-    game.gameOver(false)
-})
+// Hace que el jugador salte al pulsar el boton "A"
 controller.A.onEvent(ControllerButtonEvent.Pressed, function on_a_pressed() {
     if (choose != 0) {
         if (skin_number != 2) {
@@ -42,6 +53,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function on_a_pressed() {
     }
     
 })
+// Gira el personaje a la izquierda al moverse
 controller.left.onEvent(ControllerButtonEvent.Pressed, function on_left_pressed() {
     
     if (spawn) {
@@ -53,21 +65,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function on_left_pressed(
     }
     
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`
-        mine-2
-    `, function on_overlap_tile4(sprite4: Sprite, location4: tiles.Location) {
-    game.gameOver(false)
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`
-        pacman ghost
-    `, function on_overlap_tile5(sprite5: Sprite, location5: tiles.Location) {
-    game.gameOver(false)
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`
-        mine-0
-    `, function on_overlap_tile6(sprite6: Sprite, location6: tiles.Location) {
-    game.gameOver(false)
-})
+// Teletransporta al jugador a la posicion inicial y a los distintos niveles
 function startPlaying() {
     
     music.stopAllSounds()
@@ -268,6 +266,7 @@ function startPlaying() {
     
 }
 
+// Gira el personaje a la derecha al moverse
 controller.right.onEvent(ControllerButtonEvent.Pressed, function on_right_pressed() {
     
     if (spawn) {
@@ -279,6 +278,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function on_right_presse
     }
     
 })
+// Cambia el personaje del usuario en el menú
 function change_skin() {
     
     pause(500)
@@ -308,49 +308,6 @@ function change_skin() {
     show_skin.setPosition(105, 88)
 }
 
-scene.onOverlapTile(SpriteKind.Player, assets.tile`
-        sonicenemy
-    `, function on_overlap_tile7(sprite7: Sprite, location7: tiles.Location) {
-    game.gameOver(false)
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`
-        enemysonic
-    `, function on_overlap_tile8(sprite8: Sprite, location8: tiles.Location) {
-    game.gameOver(false)
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`
-        enemigo_1
-    `, function on_overlap_tile9(sprite9: Sprite, location9: tiles.Location) {
-    game.gameOver(false)
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`
-        pacman ghost2
-    `, function on_overlap_tile10(sprite10: Sprite, location10: tiles.Location) {
-    game.gameOver(false)
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Button, function on_on_overlap(sprite32: Sprite, otherSprite: Sprite) {
-    
-    if (otherSprite == play_button && controller.A.isPressed()) {
-        sprites.destroy(cursor)
-        sprites.destroy(play_button)
-        sprites.destroy(skin)
-        sprites.destroy(show_skin)
-        show_intro()
-        choose = 1
-        startPlaying()
-    }
-    
-    if (otherSprite == skin && controller.A.isPressed()) {
-        sprites.destroy(show_skin)
-        change_skin()
-    }
-    
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`
-        mine-1
-    `, function on_overlap_tile11(sprite22: Sprite, location22: tiles.Location) {
-    game.gameOver(false)
-})
 function show_intro() {
     music.stopAllSounds()
     scene.setBackgroundImage(assets.image`
@@ -363,6 +320,7 @@ function show_intro() {
     pause(2000)
 }
 
+// Muestra el menú y los distintos botones, además de el aspecto del jugador
 function show_menu() {
     
     if (choose == 0) {
@@ -388,22 +346,55 @@ function show_menu() {
     
 }
 
-scene.onOverlapTile(SpriteKind.Player, assets.tile`
-        mine-4
-    `, function on_overlap_tile12(sprite11: Sprite, location11: tiles.Location) {
-    game.gameOver(false)
-})
-let skin : Sprite = null
-let cursor : Sprite = null
-let play_button : Sprite = null
-let show_skin : Sprite = null
 let gravity = 0
 let spawn = false
 let player1 : Sprite = null
+let show_skin : Sprite = null
+let skin : Sprite = null
+let cursor : Sprite = null
+let play_button : Sprite = null
 let facing_right = false
 let level = 0
 let choose = 0
 let skin_number = 0
+// Detecta que el jugador toca un sprite concreto y acaba la partida.
+function on_overlap_tile2(sprite2: Sprite, location2: tiles.Location) {
+    game.gameOver(false)
+}
+
+scene.onOverlapTile(SpriteKind.Player, assets.tile`
+        mine-3
+    `, on_overlap_tile2)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`
+        sonicenemy3
+    `, on_overlap_tile2)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`
+        mine-2
+    `, on_overlap_tile2)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`
+        pacman ghost
+    `, on_overlap_tile2)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`
+        mine-0
+    `, on_overlap_tile2)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`
+        sonicenemy
+    `, on_overlap_tile2)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`
+        enemysonic
+    `, on_overlap_tile2)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`
+        enemigo_1
+    `, on_overlap_tile2)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`
+        pacman ghost2
+    `, on_overlap_tile2)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`
+        mine-1
+    `, on_overlap_tile2)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`
+        mine-4
+    `, on_overlap_tile2)
 skin_number = 0
 choose = 0
 level = 0
