@@ -32,6 +32,28 @@ def on_on_overlap(sprite32, otherSprite):
         change_skin()
 sprites.on_overlap(SpriteKind.player, SpriteKind.Button, on_on_overlap)
 
+#Hace al jugador aparecer por primera vez según el personaje seleccionado y le asigna su velocidad
+def spawn_player():
+    global player1, spawn
+    if skin_number == 0:
+        player1 = sprites.create(assets.image("""
+            scooter
+        """), SpriteKind.player)
+        controller.move_sprite(player1, 100, 0)
+    if skin_number == 1:
+        player1 = sprites.create(assets.image("""
+            rocket
+        """), SpriteKind.player)
+        controller.move_sprite(player1, 150, 0)
+    if skin_number == 2:
+        player1 = sprites.create(assets.image("""
+            helicopter
+        """), SpriteKind.player)
+        controller.move_sprite(player1, 90, 0)
+    player1.ay = gravity
+    player1.set_position(88, 110)
+    scene.camera_follow_sprite(player1)
+    spawn = True
 # Hace que el jugador salte al pulsar el boton "A"
 
 def on_a_pressed():
@@ -56,7 +78,7 @@ controller.left.on_event(ControllerButtonEvent.PRESSED, on_left_pressed)
 
 # Teletransporta al jugador a la posicion inicial y a los distintos niveles
 def startPlaying():
-    global gravity, player1, spawn
+    global gravity
     music.stop_all_sounds()
     if level == 0:
         music.play(music.create_song(assets.song("""
@@ -190,25 +212,7 @@ def startPlaying():
         tiles.set_current_tilemap(tilemap("""
             tutorial
         """))
-        if skin_number == 0:
-            player1 = sprites.create(assets.image("""
-                scooter
-            """), SpriteKind.player)
-            controller.move_sprite(player1, 100, 0)
-        if skin_number == 1:
-            player1 = sprites.create(assets.image("""
-                rocket
-            """), SpriteKind.player)
-            controller.move_sprite(player1, 150, 0)
-        if skin_number == 2:
-            player1 = sprites.create(assets.image("""
-                helicopter
-            """), SpriteKind.player)
-            controller.move_sprite(player1, 90, 0)
-        player1.ay = gravity
-        player1.set_position(88, 110)
-        scene.camera_follow_sprite(player1)
-        spawn = True
+        spawn_player()
     if level == 1:
         music.play(music.create_song(assets.song("""
                 mario_theme
@@ -313,8 +317,8 @@ def show_menu():
         """), SpriteKind.player)
         skin.set_position(80, 90)
         controller.move_sprite(cursor)
-gravity = 0
 spawn = False
+gravity = 0
 player1: Sprite = None
 show_skin: Sprite = None
 skin: Sprite = None

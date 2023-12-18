@@ -33,6 +33,36 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Button, function on_on_overlap(s
     }
     
 })
+// Hace al jugador aparecer por primera vez según el personaje seleccionado y le asigna su velocidad
+function spawn_player() {
+    
+    if (skin_number == 0) {
+        player1 = sprites.create(assets.image`
+            scooter
+        `, SpriteKind.Player)
+        controller.moveSprite(player1, 100, 0)
+    }
+    
+    if (skin_number == 1) {
+        player1 = sprites.create(assets.image`
+            rocket
+        `, SpriteKind.Player)
+        controller.moveSprite(player1, 150, 0)
+    }
+    
+    if (skin_number == 2) {
+        player1 = sprites.create(assets.image`
+            helicopter
+        `, SpriteKind.Player)
+        controller.moveSprite(player1, 90, 0)
+    }
+    
+    player1.ay = gravity
+    player1.setPosition(88, 110)
+    scene.cameraFollowSprite(player1)
+    spawn = true
+}
+
 //  Hace que el jugador salte al pulsar el boton "A"
 controller.A.onEvent(ControllerButtonEvent.Pressed, function on_a_pressed() {
     if (choose != 0) {
@@ -200,31 +230,7 @@ function startPlaying() {
         tiles.setCurrentTilemap(tilemap`
             tutorial
         `)
-        if (skin_number == 0) {
-            player1 = sprites.create(assets.image`
-                scooter
-            `, SpriteKind.Player)
-            controller.moveSprite(player1, 100, 0)
-        }
-        
-        if (skin_number == 1) {
-            player1 = sprites.create(assets.image`
-                rocket
-            `, SpriteKind.Player)
-            controller.moveSprite(player1, 150, 0)
-        }
-        
-        if (skin_number == 2) {
-            player1 = sprites.create(assets.image`
-                helicopter
-            `, SpriteKind.Player)
-            controller.moveSprite(player1, 90, 0)
-        }
-        
-        player1.ay = gravity
-        player1.setPosition(88, 110)
-        scene.cameraFollowSprite(player1)
-        spawn = true
+        spawn_player()
     }
     
     if (level == 1) {
@@ -353,8 +359,8 @@ function show_menu() {
     
 }
 
-let gravity = 0
 let spawn = false
+let gravity = 0
 let player1 : Sprite = null
 let show_skin : Sprite = null
 let skin : Sprite = null
